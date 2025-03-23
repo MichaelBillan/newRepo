@@ -1,22 +1,22 @@
 import java.util.Scanner;
-
-public class TestThreadCheckArray { // nothing
+import java.util.ArrayList;
+public class TestThreadCheckArray { 
 	public static void main(String[] args) {
 		try (Scanner input = new Scanner(System.in)) {
 			Thread thread1, thread2;
 			System.out.println("Enter array size");
 			int num  = input.nextInt();
-			int [] array = new int[num];
+			ArrayList<Integer> array = new ArrayList<>();
 			System.out.println("Enter numbers for array");
 			
 			for (int index = 0; index < num; index++) 
-				array[index] = input.nextInt();
+				array.add(input.nextInt());
 			
 			System.out.println("Enter number");
 			num = input.nextInt();
 			
 			SharedData sd = new SharedData(array, num);
-			
+			long start = System.currentTimeMillis();
 			thread1 = new Thread(new ThreadCheckArray(sd), "thread1");
 			thread2 = new Thread(new ThreadCheckArray(sd), "thread2");
 			thread1.start();
@@ -30,14 +30,16 @@ public class TestThreadCheckArray { // nothing
 			{
 				e.printStackTrace();
 			}
+			long end = System.currentTimeMillis();
+			System.out.println("Total execution time: " + (end - start) + " ms");
 			if (!sd.getFlag())
 			{
 				System.out.println("Sorry");
 				return;
 			}
-			System.out.println("Solution for b : " + sd.getB() + ",n = " + sd.getArray().length);
+			System.out.println("Solution for b : " + sd.getB() + ",n = " + sd.getArray().size());
 			System.out.print("I:    ");
-			for(int index = 0; index < sd.getArray().length ; index++)
+			for(int index = 0; index < sd.getArray().size() ; index++)
 				System.out.print(index + "    ");
 			System.out.println();
 			System.out.print("A:    ");
