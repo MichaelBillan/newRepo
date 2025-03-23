@@ -33,6 +33,7 @@ public class ThreadCheckArray implements Runnable
 				synchronized (sd) 
 				{
 					sd.setFlag(true);
+					sd.setWinner(Thread.currentThread().getName());
 				}			
 			}
 			if (b == array.get(n-1))
@@ -65,6 +66,7 @@ public class ThreadCheckArray implements Runnable
 				synchronized (sd) 
 				{
 					sd.setFlag(true);
+					sd.setWinner(Thread.currentThread().getName());
 				}
 			}
 		if (flag)
