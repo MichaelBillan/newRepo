@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class TestThreadCheckArray {
+public class TestThreadCheckArray { // nothing
 	public static void main(String[] args) {
 		try (Scanner input = new Scanner(System.in)) {
 			Thread thread1, thread2;
